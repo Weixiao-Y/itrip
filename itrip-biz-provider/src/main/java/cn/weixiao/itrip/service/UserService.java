@@ -18,4 +18,12 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	List<User> getListByQuery(User query) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	boolean saveUser(User user) throws Exception;
 }

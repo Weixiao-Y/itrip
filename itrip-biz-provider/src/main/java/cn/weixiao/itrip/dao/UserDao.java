@@ -14,4 +14,12 @@ import java.util.List;
 @Repository
 public interface UserDao {
 	List<User> findListByQuery(User query) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	int saveUser(User user) throws Exception;
 }

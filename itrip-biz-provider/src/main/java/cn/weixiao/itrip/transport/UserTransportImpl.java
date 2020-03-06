@@ -4,6 +4,7 @@ import cn.weixiao.itrip.pojo.entity.User;
 import cn.weixiao.itrip.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,18 @@ public class UserTransportImpl implements UserTransport {
 	 * @throws Exception
 	 */
 	@PostMapping(value = "/list")
-	public List<User> getListByQuery(User query) throws Exception {
+	public List<User> getListByQuery(@RequestBody User query) throws Exception {
 		return userService.getListByQuery(query);
+	}
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/save")
+	public boolean saveUser(@RequestBody User user) throws Exception {
+		return userService.saveUser(user);
 	}
 }
