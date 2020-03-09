@@ -55,6 +55,13 @@
 		</dependency>
 		<!-- 配置 Druid Spring Boot Starter 依赖关系 [END] -->
 
+		<!-- 配置 Spring Boot Starter Redis 依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- 配置 Spring Boot Starter Redis 依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

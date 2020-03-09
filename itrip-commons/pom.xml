@@ -44,6 +44,14 @@
 		</dependency>
 		<!-- 配置 Spring Boot Starter Mail 依赖关系 [END] -->
 
+		<!-- 配置容联云组件所需要的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>com.cloopen</groupId>
+			<artifactId>ccp_rest_sdk</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<!-- 配置容联云组件所需要的依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
