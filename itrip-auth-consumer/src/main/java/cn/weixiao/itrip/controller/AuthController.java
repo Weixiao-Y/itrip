@@ -7,12 +7,14 @@ import cn.weixiao.itrip.base.pojo.vo.ResponseDto;
 import cn.weixiao.itrip.pojo.entity.User;
 import cn.weixiao.itrip.pojo.vo.UserVO;
 import cn.weixiao.itrip.transport.UserTransport;
+import cn.weixiao.itrip.util.JWTUtil;
 import cn.weixiao.itrip.util.MD5Util;
 import cn.weixiao.itrip.util.RegValidationUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
 import java.util.List;
 
 /**
@@ -62,20 +64,26 @@ public class AuthController extends BaseController {
 		// 校验用户所给定的信息是否有效
 		if (RegValidationUtil.validateEmail(userVO.getUserCode())
 				&& userVO.getUserPassword() != null && !"".equals(userVO.getUserPassword())) {
-			// 对于密码进行MD5加密
-			userVO.setUserPassword(MD5Util.encrypt(userVO.getUserPassword()));
-			// 将用户注册UserVO转换成User对象
-			User user = new User();
-			BeanUtils.copyProperties(userVO, user);
-			// 当调用该方法的时候，用户属于自主注册
-			user.setUserType(UserTypeEnum.USER_TYPE_REG.getCode());
-			// 将激活状态设置为未激活
-			user.setActivated(UserActivatedEnum.USER_ACTIVATED_NO.getCode());
-			// 使用传输层，远程调用生产者进行用户信息注册工作
-			boolean flag = userTransport.saveUser(user);
-			if (flag) {
-				// 注册成功
-				return ResponseDto.success();
+			// 进行唯一性校验
+			User query = new User();
+			query.setUserCode(userVO.getUserCode());
+			List<User> userList = userTransport.getListByQuery(query);
+			if (userList == null || userList.size() <=0) {
+				// 对于密码进行MD5加密
+				userVO.setUserPassword(MD5Util.encrypt(userVO.getUserPassword()));
+				// 将用户注册UserVO转换成User对象
+				User user = new User();
+				BeanUtils.copyProperties(userVO, user);
+				// 当调用该方法的时候，用户属于自主注册
+				user.setUserType(UserTypeEnum.USER_TYPE_REG.getCode());
+				// 将激活状态设置为未激活
+				user.setActivated(UserActivatedEnum.USER_ACTIVATED_NO.getCode());
+				// 使用传输层，远程调用生产者进行用户信息注册工作
+				boolean flag = userTransport.saveUser(user);
+				if (flag) {
+					// 注册成功
+					return ResponseDto.success();
+				}
 			}
 		}
 		return ResponseDto.failure("注册失败！");
@@ -173,5 +181,49 @@ public class AuthController extends BaseController {
 			return ResponseDto.failure("激活码不正确！");
 		}
 		return ResponseDto.failure("激活失败！");
+	}
+
+	/**
+	 * <b>使用cellphone、email和password登录系统</b>
+	 * @param name
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/dologin")
+	public ResponseDto<Object> loginUser(String name, String password) throws Exception {
+		if (name != null && !"".equals(name.trim())
+				&& password != null && !"".equals(password.trim())) {
+			// 通过登录用户名查找相关信息，再比较密码是否相同
+			User query = new User();
+			query.setUserCode(name);
+			List<User> userList = userTransport.getListByQuery(query);
+			if (userList != null || userList.size() > 0) {
+				User user = userList.get(0);
+				// 比较密码是否相同
+				if (user.getUserPassword().equals(MD5Util.encrypt(password))) {
+					// 判断用户是否为激活状态
+					if (user.getActivated() == UserActivatedEnum.USER_ACTIVATED_YES.getCode()) {
+						// 登录成功，按照相应的技术，生成一个Token令牌，以Cookie形式交给浏览器，
+						// 每当浏览器在访问其他服务器的时候，都会携带该信息，如果需要校验该用户是否登录
+						// 只需要校验该Token是否按照系统规则生成的即可
+						// 在java中，Token技术使用了TWT（JSON Web Token）
+						// 使用当前登录用户的id生成Token信息
+						String token = JWTUtil.createToken(user.getId());
+						// 将Token交给浏览器
+						response.setHeader("Authorization", token);
+						return ResponseDto.success(token);
+					} else {
+						return ResponseDto.failure("该用户为激活！");
+					}
+				} else {
+					return ResponseDto.failure("登录密码有误！");
+				}
+			} else {
+				return ResponseDto.failure("该用户未注册！");
+			}
+		} else {
+			return ResponseDto.failure("请填写登录信息！");
+		}
 	}
 }
