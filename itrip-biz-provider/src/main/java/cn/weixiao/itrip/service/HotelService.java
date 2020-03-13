@@ -1,6 +1,7 @@
 package cn.weixiao.itrip.service;
 
 import cn.weixiao.itrip.pojo.entity.Hotel;
+import cn.weixiao.itrip.pojo.vo.HotelVO;
 import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
 
 import java.util.List;
@@ -19,5 +20,13 @@ public interface HotelService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<Hotel> searchItripHotelListByHotCity(SearchHotCityVO queryVO) throws Exception;
+	List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO queryVO) throws Exception;
+
+	/**
+	 * <b>根据主键查询对象信息</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	Hotel getHotelById(Long hotelId) throws Exception;
 }

@@ -3,6 +3,7 @@ package cn.weixiao.itrip.controller;
 import cn.weixiao.itrip.base.controller.BaseController;
 import cn.weixiao.itrip.base.pojo.vo.ResponseDto;
 import cn.weixiao.itrip.pojo.entity.Hotel;
+import cn.weixiao.itrip.pojo.vo.HotelVO;
 import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
 import cn.weixiao.itrip.transport.HotelTransport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class SearchController extends BaseController {
 	@PostMapping(value = "/hotellist/searchItripHotelListByHotCity")
 	public ResponseDto<Object> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO queryVO)
 			throws Exception {
-		List<Hotel> hotelList = hotelTransport.searchItripHotelListByHotCity(queryVO);
+		List<HotelVO> hotelList = hotelTransport.searchItripHotelListByHotCity(queryVO);
 		return ResponseDto.success(hotelList);
 	}
 }

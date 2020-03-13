@@ -3,8 +3,10 @@ package cn.weixiao.itrip.controller;
 import cn.weixiao.itrip.base.enums.AreaHotEnum;
 import cn.weixiao.itrip.base.pojo.vo.ResponseDto;
 import cn.weixiao.itrip.pojo.entity.AreaDic;
+import cn.weixiao.itrip.pojo.entity.Hotel;
 import cn.weixiao.itrip.pojo.entity.LableDic;
 import cn.weixiao.itrip.transport.AreaDicTransport;
+import cn.weixiao.itrip.transport.HotelTransport;
 import cn.weixiao.itrip.transport.LableDicTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class HotelController {
 	private AreaDicTransport areaDicTransport;
 	@Autowired
 	private LableDicTransport lableDicTransport;
+	@Autowired
+	private HotelTransport hotelTransport;
 	/**
 	 * <b>查询热门城市</b>
 	 * @param isChina
@@ -57,5 +61,17 @@ public class HotelController {
 		List<LableDic> lableDicList = lableDicTransport.getListByQuery(query);
 
 		return ResponseDto.success(lableDicList);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店特色、商圈、酒店名称（视频文字描述）</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping(value = "/getvideodesc/{hotelId}")
+	public ResponseDto<Object> getVideoDesc(@PathVariable("hotelId") Long hotelId) throws Exception {
+		Hotel hotel = hotelTransport.getHotelById(hotelId);
+		return ResponseDto.success(hotel);
 	}
 }
