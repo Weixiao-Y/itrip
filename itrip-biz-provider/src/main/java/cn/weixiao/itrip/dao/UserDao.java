@@ -13,6 +13,13 @@ import java.util.List;
  */
 @Repository
 public interface UserDao {
+
+	/**
+	 * <b>按照查询条件查询信息列表</b>
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
 	List<User> findListByQuery(User query) throws Exception;
 
 	/**

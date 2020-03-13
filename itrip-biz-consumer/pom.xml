@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                                http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>itrip-provider-commons</artifactId>
+	<artifactId>itrip-biz-consumer</artifactId>
 	<packaging>jar</packaging>
 
 	<!-- 配置父级依赖项目 itrip-parent [BEGIN] -->
@@ -20,55 +19,16 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
-		<druid-spring-boot-starter.version>1.1.21</druid-spring-boot-starter.version>
 	</properties>
 
 	<dependencies>
-		<!-- 配置 Spring Boot Starter JDBC 依赖关系 [BEGIN] -->
+		<!-- 配置itrip-commons项目依赖关系 [BEGIN] -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<groupId>cn.weixiao.itrip</groupId>
+			<artifactId>itrip-commons</artifactId>
+			<version>${parent.version}</version>
 		</dependency>
-		<!-- 配置 Spring Boot Starter JDBC 依赖关系 [END] -->
-
-		<!-- 配置 MySQL 数据库连接依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<!-- 配置 MySQL 数据库连接依赖关系 [END] -->
-
-		<!-- 配置 Mybatis Spring Boot Starter 依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>${mybatis-spring-boot-starter.version}</version>
-		</dependency>
-		<!-- 配置 Mybatis Spring Boot Starter 依赖关系 [END] -->
-
-		<!-- 配置 Druid Spring Boot Starter 依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>${druid-spring-boot-starter.version}</version>
-		</dependency>
-		<!-- 配置 Druid Spring Boot Starter 依赖关系 [END] -->
-
-		<!-- 配置 Spring Boot Starter Redis 依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<!-- 配置 Spring Boot Starter Redis 依赖关系 [END] -->
-
-		<!-- 配置 PageHelper Spring Boot Starter 依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.13</version>
-		</dependency>
-		<!-- 配置 PageHelper Spring Boot Starter 依赖关系 [END] -->
+		<!-- 配置itrip-commons项目依赖关系 [END] -->
 
 		<dependency>
 			<groupId>junit</groupId>

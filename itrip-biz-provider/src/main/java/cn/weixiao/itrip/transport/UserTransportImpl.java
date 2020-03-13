@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * <b>爱旅行-用户信息传输层接口实现类</b>
+ * @author Weixiao
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 @RestController("userTransport")
 @RequestMapping("/user/trans")
 public class UserTransportImpl implements UserTransport {

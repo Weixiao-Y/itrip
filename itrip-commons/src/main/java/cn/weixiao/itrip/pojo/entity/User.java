@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * <b>爱旅行-用户信息实体对象</b>
- * @author Arthur
+ * @author Weixiao
  * @version 1.0.0
  * @since 1.0.0
  */
