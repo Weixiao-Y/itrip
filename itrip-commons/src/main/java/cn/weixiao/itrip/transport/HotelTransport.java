@@ -1,8 +1,10 @@
 package cn.weixiao.itrip.transport;
 
 import cn.weixiao.itrip.pojo.entity.Hotel;
+import cn.weixiao.itrip.pojo.entity.HotelRoom;
 import cn.weixiao.itrip.pojo.vo.HotelVO;
 import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
+import cn.weixiao.itrip.pojo.vo.SearchHotelRoomVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
