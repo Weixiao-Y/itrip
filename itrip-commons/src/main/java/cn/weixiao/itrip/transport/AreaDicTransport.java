@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <b>爱旅行-区域字典信息传输层接口</b>
@@ -25,4 +26,13 @@ public interface AreaDicTransport {
 	 */
 	@PostMapping(value = "/query")
 	List<AreaDic> getListByQuery(@RequestBody AreaDic query) throws Exception;
+
+	/**
+	 * <b>根据map集合查询列表</b>
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/param")
+	List<AreaDic> getListByMap(Map param) throws Exception;
 }

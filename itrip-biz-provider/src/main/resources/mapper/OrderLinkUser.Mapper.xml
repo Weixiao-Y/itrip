@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weixiao.itrip.dao.OrderLinkUserDao">
+	<select id="findOrderLinkUserByMap" parameterType="java.util.Map" resultMap="linkUserMap">
+		SELECT
+			iolu.linkUserId,
+			iolu.linkUserName
+		FROM
+			itrip_order_link_user iolu
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id}</if>
+			</trim>
+		</where>
+	</select>
+
+	<resultMap id="linkUserMap" type="cn.weixiao.itrip.pojo.vo.OrderLinkUserVo">
+		<id property="linkUserId" javaType="java.lang.Long" column="linkUserId"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
+	</resultMap>
+</mapper>

@@ -2,7 +2,9 @@ package cn.weixiao.itrip.service;
 
 import cn.weixiao.itrip.pojo.entity.Hotel;
 import cn.weixiao.itrip.pojo.vo.HotelVO;
+import cn.weixiao.itrip.pojo.vo.Page;
 import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
+import cn.weixiao.itrip.pojo.vo.SearchHotelVO;
 
 import java.util.List;
 
@@ -29,4 +31,14 @@ public interface HotelService {
 	 * @throws Exception
 	 */
 	Hotel getHotelById(Long hotelId) throws Exception;
+
+	/**
+	 * <b>分页查询酒店信息</b>
+	 * @param searchHotelVO
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	Page searchItripHotelPage(SearchHotelVO searchHotelVO, Integer pageNo, Integer pageSize) throws Exception;
 }

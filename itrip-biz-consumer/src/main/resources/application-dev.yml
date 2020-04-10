@@ -4,3 +4,6 @@ server:
 spring:
   application:
     name: itrip-biz-consumer
+    servlet:
+      multipart:
+        max-file-size: 1024MB

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weixiao.itrip.dao.UserLinkUserDao">
+	<select id="findUserLinkUserListByQuery" parameterType="UserLinkUser" resultMap="userLinkUserMap">
+		select
+			iulu.id,
+			iulu.linkUserName,
+			iulu.linkIdCard,
+			iulu.linkPhone,
+			iulu.userId,
+			iulu.creationDate,
+			iulu.createdBy,
+			iulu.modifyDate,
+			iulu.modifiedBy,
+			iulu.linkIdCardType
+		from
+			itrip_user_link_user iulu join itrip_user iu on iulu.userId=iu.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">iulu.id=#{id} and </if>
+				<if test="userId != null">iulu.userId=#{userId} and </if>
+				<if test="userCode != null">iu.userCode=#{userCode} and </if>
+			</trim>
+		</where>
+	</select>
+
+	<delete id="deleteItripUserLinkUserByIds" parameterType="Long">
+		delete from itrip_user_link_user
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and </if>
+			</trim>
+		</where>
+
+	</delete>
+
+	<update id="updateUserLinkUser" parameterType="cn.weixiao.itrip.pojo.entity.UserLinkUser">
+		update itrip_user_link_user
+		<set>
+			<trim suffixOverrides=",">
+				<if test="linkUserName != null and linkUserName != ''">linkUserName=#{linkUserName}, </if>
+				<if test="linkIdCard != null and linkIdCard != ''">linkIdCard=#{linkIdCard}, </if>
+				<if test="linkPhone != null and linkPhone != ''">linkPhone=#{linkPhone}, </if>
+				<if test="userId != null">userId=#{userId}, </if>
+				<if test="creationDate != null">creationDate=#{creationDate}, </if>
+				<if test="createdBy != null">createdBy=#{createdBy}, </if>
+				<if test="modifyDate != null">modifyDate=#{modifyDate}, </if>
+				<if test="modifiedBy != null">modifiedBy=#{modifiedBy}, </if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null and id != ''">id=#{id} and</if>
+			</trim>
+		</where>
+	</update>
+
+	<resultMap id="userLinkUserMap" type="UserLinkUser">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
+		<result property="linkIdCard" javaType="java.lang.String" column="linkIdCard"/>
+		<result property="linkPhone" javaType="java.lang.String" column="linkPhone"/>
+		<result property="userId" javaType="java.lang.Integer" column="userId"/>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"/>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"/>
+		<result property="linkIdCardType" javaType="java.lang.Integer" column="linkIdCardType"/>
+	</resultMap>
+</mapper>

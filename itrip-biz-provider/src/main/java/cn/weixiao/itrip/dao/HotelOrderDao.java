@@ -1,6 +1,9 @@
 package cn.weixiao.itrip.dao;
 
 import cn.weixiao.itrip.pojo.entity.HotelOrder;
+import cn.weixiao.itrip.pojo.vo.ItripListHotelOrderVO;
+import cn.weixiao.itrip.pojo.vo.PersonalHotelOrderVO;
+import cn.weixiao.itrip.pojo.vo.PersonalOrderRoomVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +25,52 @@ public interface HotelOrderDao {
 	 * @throws Exception
 	 */
 	Integer findOrderRoomCountByQuery(Map<String, Object> queryMap) throws Exception;
+
+	/**
+	 * <b>根据查询条件获得列表信息</b>
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+	List<HotelOrder> findHotelOrderListByQuery(HotelOrder query) throws Exception;
+
+	/**
+	 * <b>根据查询条件获得房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	PersonalOrderRoomVO getHotelOrderRoomInfoById(Long orderId) throws Exception;
+
+	/**
+	 * <b>保存订单对象</b>
+	 * @param hotelOrder
+	 * @return
+	 * @throws Exception
+	 */
+	int saveHotelOrder(HotelOrder hotelOrder) throws Exception;
+
+	/**
+	 * <b>修改订单对象</b>
+	 * @param hotelOrder
+	 * @return
+	 * @throws Exception
+	 */
+	int updateHotelOrder(HotelOrder hotelOrder) throws Exception;
+
+	/**
+	 * <b>根据param查询列表</b>
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	List<ItripListHotelOrderVO> getOrderListByMap(Map<String, Object> param) throws Exception;
+
+	/**
+	 * <b>根据条件查询订单数量</b>
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	Integer getOrderCountByMap(Map<String, Object> param) throws Exception;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weixiao.itrip.dao.UserInfoDao">
+
+	<insert id="saveLinkUser" parameterType="UserLinkUser">
+		insert into itrip_user_link_user(
+		<trim suffixOverrides=",">
+			<if test="linkUserName != null">linkUserName,</if>
+			<if test="linkIdCard != null">linkIdCard,</if>
+			<if test="linkPhone != null">linkPhone,</if>
+			<if test="userId != null">userId,</if>
+			<if test="creationDate != null">creationDate,</if>
+			<if test="createdBy != null">createdBy,</if>
+			<if test="modifyDate != null">modifyDate,</if>
+			<if test="modifiedBy != null">modifiedBy,</if>
+			<if test="linkIdCardType != null">linkIdCardType,</if>
+		</trim>
+		) values (
+		<trim suffixOverrides=",">
+			<if test="linkUserName != null">#{linkUserName},</if>
+			<if test="linkIdCard != null">#{linkIdCard},</if>
+			<if test="linkPhone != null">#{linkPhone},</if>
+			<if test="userId != null">#{userId},</if>
+			<if test="creationDate != null">#{creationDate},</if>
+			<if test="createdBy != null">#{createdBy},</if>
+			<if test="modifyDate != null">#{modifyDate},</if>
+			<if test="modifiedBy != null">#{modifiedBy},</if>
+			<if test="linkIdCardType != null">#{linkIdCardType},</if>
+		</trim>
+		)
+	</insert>
+</mapper>

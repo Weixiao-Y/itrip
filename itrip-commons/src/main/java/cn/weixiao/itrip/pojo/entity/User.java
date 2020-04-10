@@ -1,5 +1,8 @@
 package cn.weixiao.itrip.pojo.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,19 +12,32 @@ import java.util.Date;
  * @version 1.0.0
  * @since 1.0.0
  */
+@ApiModel(value = "User",description = "用户信息实体对象")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@ApiModelProperty("用户id")
 	private Long id;
+	@ApiModelProperty("登录名称")
 	private String userCode;
+	@ApiModelProperty("登录密码")
 	private String userPassword;
+	@ApiModelProperty("用户类型（标识：0 自注册用户 1 微信登录 2 QQ登录 3 微博登录）")
 	private Integer userType;
+	@ApiModelProperty("平台ID（根据不同登录用户，进行相应存入：自注册用户主键ID、微信ID、QQID、微博ID）")
 	private Long flatID;
+	@ApiModelProperty("用户昵称")
 	private String userName;
+	@ApiModelProperty("微信账号")
 	private String weChat;
+	@ApiModelProperty("QQ账号")
 	private String QQ;
+	@ApiModelProperty("微博账号")
 	private String weibo;
+	@ApiModelProperty("百度账号")
 	private String baidu;
+	@ApiModelProperty("是否激活,(0 false，1 true,默认是0)")
 	private int activated;
+	// required = false （可有可无）
 	private Date creationDate;
 	private Long createdBy;
 	private Date modifyDate;

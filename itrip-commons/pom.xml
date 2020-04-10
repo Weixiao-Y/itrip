@@ -67,6 +67,27 @@
 		</dependency>
 		<!-- 配置Spring Boot Solr的依赖关系 [END] -->
 
+		<!-- 引入 Swagger 相关依赖关系：Springfox-swagger2，以及用于生成页面：springfox-swagger2-ui [BEGIN] -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- 引入 Swagger 相关依赖关系：Springfox-swagger2，以及用于生成页面：springfox-swagger2-ui [END] -->
+
+		<!-- 引入 增加读写效率的 io 依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<!-- 引入 增加读写效率的 io 依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

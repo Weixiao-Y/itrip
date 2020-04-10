@@ -38,6 +38,14 @@
 		</dependency>
 		<!-- 配置itrip-provider-commons项目依赖关系 [END] -->
 
+		<!-- 配置 PageHelper 依赖关系 [BEGIN]-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.13</version>
+		</dependency>
+		<!-- 配置 PageHelper 依赖关系 [END]-->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -4,7 +4,9 @@ import cn.weixiao.itrip.base.controller.BaseController;
 import cn.weixiao.itrip.base.pojo.vo.ResponseDto;
 import cn.weixiao.itrip.pojo.entity.Hotel;
 import cn.weixiao.itrip.pojo.vo.HotelVO;
+import cn.weixiao.itrip.pojo.vo.Page;
 import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
+import cn.weixiao.itrip.pojo.vo.SearchHotelVO;
 import cn.weixiao.itrip.transport.HotelTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +38,19 @@ public class SearchController extends BaseController {
 			throws Exception {
 		List<HotelVO> hotelList = hotelTransport.searchItripHotelListByHotCity(queryVO);
 		return ResponseDto.success(hotelList);
+	}
+
+	/**
+	 * <b>查询酒店分页(用于查询酒店列表)</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/searchItripHotelPage")
+	public ResponseDto<Object> searchItripHotelPage(@RequestBody SearchHotelVO searchHotelVO) throws Exception {
+		Page page = hotelTransport.searchItripHotelPage(searchHotelVO, searchHotelVO.getPageNo(), searchHotelVO.getPageSize());
+		if (page != null) {
+			return ResponseDto.success(page);
+		}
+		return  ResponseDto.failure("获取失败！");
 	}
 }

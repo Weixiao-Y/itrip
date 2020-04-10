@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
+import javax.servlet.http.Cookie;
 import java.util.List;
 
 /**
@@ -225,5 +226,23 @@ public class AuthController extends BaseController {
 		} else {
 			return ResponseDto.failure("请填写登录信息！");
 		}
+	}
+
+	/**
+	 * <b>注销用户</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping(value = "/logout")
+	public ResponseDto<Object> logout() throws Exception {
+		// 通过 Cookie 获得当前登录对象
+		String userCode = "";
+		Cookie[] cookies = request.getCookies();
+		for (Cookie  cookie : cookies) {
+			if ("user".equals(cookie.getName())) {
+				userCode = cookie.getValue();
+			}
+		}
+		return null;
 	}
 }

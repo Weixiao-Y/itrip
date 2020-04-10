@@ -2,9 +2,7 @@ package cn.weixiao.itrip.transport;
 
 import cn.weixiao.itrip.pojo.entity.Hotel;
 import cn.weixiao.itrip.pojo.entity.HotelRoom;
-import cn.weixiao.itrip.pojo.vo.HotelVO;
-import cn.weixiao.itrip.pojo.vo.SearchHotCityVO;
-import cn.weixiao.itrip.pojo.vo.SearchHotelRoomVO;
+import cn.weixiao.itrip.pojo.vo.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,4 +38,15 @@ public interface HotelTransport {
 	 */
 	@PostMapping(value = "/id")
 	Hotel getHotelById(@RequestParam Long hotelId) throws Exception;
+
+	/**
+	 * <b>分页查询酒店列表</b>
+	 * @param searchHotelVO
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/page")
+	Page searchItripHotelPage(@RequestBody SearchHotelVO searchHotelVO,@RequestParam Integer pageNo, @RequestParam Integer pageSize) throws Exception;
 }

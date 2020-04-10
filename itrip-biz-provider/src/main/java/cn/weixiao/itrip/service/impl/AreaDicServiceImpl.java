@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <b>爱旅行-区域字典信息业务层接口实现类</b>
@@ -36,5 +37,15 @@ public class AreaDicServiceImpl implements AreaDicService {
 			return areaDicList;
 		}
 		return new ArrayList<AreaDic>();
+	}
+
+	/**
+	 * <b>根据map查询信息列表</b>
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AreaDic> getListByMap(Map param) throws Exception {
+		return areaDicDao.getListByMap(param);
 	}
 }
